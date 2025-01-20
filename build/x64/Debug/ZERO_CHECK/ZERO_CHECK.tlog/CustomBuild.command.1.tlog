@@ -1,0 +1,10 @@
+^D:\VS_CODE\C++\PROJECT\GATESERVER\BUILD\CMAKEFILES\AE6F1E1CEF35FCAE7759F874BE87B482\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/VS_Code/C++/project/GateServer -BD:/VS_Code/C++/project/GateServer/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/VS_Code/C++/project/GateServer/build/GATESERVER.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
