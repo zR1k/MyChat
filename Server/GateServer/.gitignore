@@ -1,2 +1,7 @@
 # 忽略构建目录
 /build/
+# 忽略日志文件
+/logs/
+# 忽略配置文件
+config.ini
+/.vscode/
