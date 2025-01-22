@@ -1,5 +1,5 @@
 # 设置构建目录
-$buildDir = "D:/VS_Code/C++/project/Server/GateServer/build"
+$buildDir = "D:/VS_Code/C++/project/MyChat/Server/GateServer/build"
 
 #清理构建目录
 if (Test-Path $buildDir) {
