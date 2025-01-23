@@ -19,5 +19,11 @@ cmake .. -DCMAKE_TOOLCHAIN_FILE=D:/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAK
 # 编译项目
 cmake --build . --config Debug
 
+Copy-Item -Path "../config.ini" -Destination "./Debug/config.ini" -Force
+
 # 保持窗口打开
 Pause
+# 进入Debug
+Set-Location "./build/Debug"
+# 运行程序
+./GateServer.exe

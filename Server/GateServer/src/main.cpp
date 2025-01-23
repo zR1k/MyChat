@@ -7,7 +7,7 @@
 int main() {
     ConfigMgr gCfgMgr;
     std::string gate_port_str = gCfgMgr["GateServer"]["port"];
-    unsigned short gate_port = static_cast<unsigned short>(std::stoi(gate_port_str));
+    unsigned short gate_port = atoi(gate_port_str.c_str());
     try
     {
         unsigned short port = static_cast<unsigned short>(8080);

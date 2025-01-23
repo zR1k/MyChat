@@ -3,7 +3,7 @@
 #include "const.h"
 
 struct SectionInfo{
-    SectionInfo() = default;
+    SectionInfo(){}
 
     SectionInfo(const SectionInfo& section_info) {
         _section_datas = section_info._section_datas;
@@ -13,8 +13,7 @@ struct SectionInfo{
         if (this == &section_info) {
             return *this;
         }
-        _section_datas = section_info._section_datas;
-        return *this;
+        this->_section_datas = section_info._section_datas;
     }
 
     ~SectionInfo() {
@@ -46,8 +45,7 @@ public:
         if (this == &config_mgr) {
             return *this;
         }
-        _config_map = config_mgr._config_map;
-        return *this;
+        this->_config_map = config_mgr._config_map;
     }
 
     ~ConfigMgr() {
@@ -61,5 +59,5 @@ public:
         return SectionInfo();
     }
 private:
-    std::unordered_map<std::string, SectionInfo> _config_map;
+    std::map<std::string, SectionInfo> _config_map;
 };

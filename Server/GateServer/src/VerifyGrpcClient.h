@@ -24,7 +24,7 @@ public:
         req.set_email(email);
         Status status = stub_->GetVerifyCode(&context, req, &resp);
         if(!status.ok()) {
-            std::cout << "GetVerifyCode rpc failed" << std::endl;
+            // std::cout << "GetVerifyCode rpc failed" << std::endl;
             resp.set_error(ErrorCodes::RPCFalied);
         }
         return resp;
@@ -33,7 +33,7 @@ public:
 private:
     std::unique_ptr<VerifyService::Stub> stub_;
     VerifyGrpcClient() {
-        std::shared_ptr<Channel> channel = grpc::CreateChannel("0.0.0.0:50051", 
+        std::shared_ptr<Channel> channel = grpc::CreateChannel("127.0.0.1:50051", 
             grpc::InsecureChannelCredentials());
         stub_ = VerifyService::NewStub(channel);
     }

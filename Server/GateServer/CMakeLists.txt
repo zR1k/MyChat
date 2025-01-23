@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_TOOLCHAIN_FILE "D:/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
 
 # 查找依赖库
-find_package(Boost REQUIRED COMPONENTS asio beast)
+find_package(Boost REQUIRED COMPONENTS asio beast filesystem system)
 find_package(Protobuf REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 find_package(jsoncpp CONFIG REQUIRED)
@@ -81,4 +81,6 @@ target_link_libraries(GATESERVER
     protobuf::libprotobuf
     JsonCpp::JsonCpp
     Threads::Threads
+    Boost::filesystem
+    Boost::system
 )
