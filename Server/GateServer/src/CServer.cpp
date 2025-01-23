@@ -1,6 +1,6 @@
 #include "CServer.h"
 #include "HttpConnection.h"
-#include "AsioIOServicePoll.h"
+#include "AsioIOServicePool.h"
 
 
 CServer::CServer(boost::asio::io_context& ioc, unsigned short& port) 
@@ -11,15 +11,18 @@ CServer::CServer(boost::asio::io_context& ioc, unsigned short& port)
 void CServer::Start()
 {    
     auto self = shared_from_this();
-    auto & io_context = AsioIOServicePoll::GetInstance()->GetIOService();
-    std::shared_ptr<HttpConnection> connection = std::make_shared<HttpConnection>(io_context);
-    _acceptor.async_accept(connection->GetSocket(), [self, connection](beast::error_code ec) {
+    auto& io_context = AsioIOServicePool::GetInstance()->GetIOService();
+    std::shared_ptr<HttpConnection> new_con = std::make_shared<HttpConnection>(io_context);
+    _acceptor.async_accept(new_con->GetSocket(), [self, new_con](beast::error_code ec) {
         try {
+            //出错则放弃这个连接，继续监听新链接
             if (ec) {
                 self->Start();
                 return;
             }
-            connection->Start();
+            //处理新链接，创建HpptConnection类管理新连接
+            new_con->Start();
+            //继续监听
             self->Start();
         }
         catch (std::exception& exp) {

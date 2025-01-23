@@ -23,9 +23,9 @@ public:
     RPConPool(size_t poolSize, std::string host, std::string port)
         : poolSize_(poolSize), host_(host), port_(port), b_stop_(false) {
         for (size_t i = 0; i < poolSize_; ++i) {
-            std::shared_ptr<Channel> channel = grpc::CreateChannel(host+":"+port,
+            std::shared_ptr<Channel> channel = grpc::CreateChannel(host + ":" + port,
                 grpc::InsecureChannelCredentials());
-            connections_.push(VerifyService::NewStub(channel));
+            connections_.push(VerifyService::NewStub(channel, grpc::StubOptions()));
         }
     }
     ~RPConPool() {
@@ -42,7 +42,7 @@ public:
                 return true;
             }
             return !connections_.empty();
-            });
+        });
         //如果停止则直接返回空指针
         if (b_stop_) {
             return  nullptr;
@@ -79,11 +79,11 @@ class VerifyGrpcClient : public Singleton<VerifyGrpcClient> {
 public:
     GetVerifyResp GetVerifyCode(std::string email) {
         ClientContext context;
-        GetVerifyRsp reply;
+        GetVerifyResp reply;
         GetVerifyReq request;
         request.set_email(email);
         auto stub = pool_->getConnection();
-        Status status = stub->GetVarifyCode(&context, request, &reply);
+        Status status = stub->GetVerifyCode(&context, request, &reply);
         if (status.ok()) {
             pool_->returnConnection(std::move(stub));
             return reply;
@@ -98,8 +98,8 @@ public:
 private:
     VerifyGrpcClient() {
         auto& gCfgMgr = ConfigMgr::Inst();
-        std::string host = gCfgMgr["VerifyGrpcServer"]["Host"];
-        std::string port = gCfgMgr["VerifyGrpcServer"]["Port"];
+        std::string host = gCfgMgr["VerifyServer"]["Host"];
+        std::string port = gCfgMgr["VerifyServer"]["Port"];
         pool_.reset(new RPConPool(5, host, port));
     }
 

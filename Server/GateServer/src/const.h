@@ -26,19 +26,6 @@ using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
 enum ErrorCodes {
     Success         = 0,
     Error_Json      = 1001,
-    RPCFalied       = 1002,
+    RPCFailed       = 1002,
 };
 
-// std::string ErrorCodeToString(ErrorCodes code) {
-//     switch (code) {
-//         case ErrorCodes::Success:
-//             return "Success";
-//         case ErrorCodes::Error_Json:
-//             return "Error_Json";
-//         case ErrorCodes::RPCFalied:
-//             return "RPCFalied";
-//     }
-// }
-
-// class ConfigMgr;
-// extern ConfigMgr gCfgMgr;

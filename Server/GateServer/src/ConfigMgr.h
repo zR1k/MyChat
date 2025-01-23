@@ -34,9 +34,6 @@ struct SectionInfo{
 
 class ConfigMgr {
 public:
-
-    
-
     ConfigMgr(const ConfigMgr& config_mgr) {
         _config_map = config_mgr._config_map;
     }
@@ -60,8 +57,8 @@ public:
     }
 
     static ConfigMgr& Inst() {
-        static ConfigMgr instance;
-        return instance;
+        static ConfigMgr cfg_mgr;
+        return cfg_mgr;
     }
 private:
     ConfigMgr();
