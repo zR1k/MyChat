@@ -29,5 +29,16 @@ enum ErrorCodes {
     RPCFalied       = 1002,
 };
 
-class ConfigMgr;
-extern ConfigMgr gCfgMgr;
+// std::string ErrorCodeToString(ErrorCodes code) {
+//     switch (code) {
+//         case ErrorCodes::Success:
+//             return "Success";
+//         case ErrorCodes::Error_Json:
+//             return "Error_Json";
+//         case ErrorCodes::RPCFalied:
+//             return "RPCFalied";
+//     }
+// }
+
+// class ConfigMgr;
+// extern ConfigMgr gCfgMgr;

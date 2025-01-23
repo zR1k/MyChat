@@ -24,6 +24,6 @@ Copy-Item -Path "../config.ini" -Destination "./Debug/config.ini" -Force
 # 保持窗口打开
 Pause
 # 进入Debug
-Set-Location "./build/Debug"
+Set-Location "./Debug"
 # 运行程序
 ./GateServer.exe
