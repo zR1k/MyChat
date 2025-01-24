@@ -1,0 +1,17 @@
+{
+    "email": {
+        "user": "songzhenci@126.com",
+        "pass": "JZvbV86J9DTLypVN"
+    },
+
+    "mysql": {
+        "host": "localhost",
+        "port": 3306,
+        "pass": 123456
+    },
+    "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "pass": 123456
+    }
+}

@@ -13,6 +13,10 @@ find_package(Protobuf REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 find_package(jsoncpp CONFIG REQUIRED)
 find_package(Threads REQUIRED)
+find_package(hiredis CONFIG REQUIRED)
+find_package(redis++ CONFIG REQUIRED)
+
+
 
 # 检查依赖项是否找到
 if (NOT Boost_FOUND)
@@ -30,6 +34,9 @@ endif()
 if (NOT jsoncpp_FOUND)
     message(FATAL_ERROR "JsonCpp not found!")
 endif()
+
+message(STATUS "Hiredis include directory: ${hiredis_INCLUDE_DIRS}")
+message(STATUS "Hiredis library: ${hiredis_LIBRARIES}")
 
 # 查找所有源文件
 file(GLOB_RECURSE SRC_FILES "src/*.cpp" "src/*.h")
@@ -73,14 +80,15 @@ target_include_directories(GATESERVER PRIVATE ${PROTO_GEN_DIR})
 target_compile_definitions(GATESERVER PRIVATE _WIN32_WINNT=0x0601)
 
 # 链接依赖库
-target_link_libraries(GATESERVER 
-    PRIVATE
-    Boost::asio
-    Boost::beast
-    gRPC::grpc++
-    protobuf::libprotobuf
+target_link_libraries(GATESERVER PRIVATE 
+    Boost::asio 
+    Boost::beast 
+    Boost::filesystem 
+    Boost::system 
+    protobuf::libprotobuf 
+    gRPC::grpc++ 
     JsonCpp::JsonCpp
     Threads::Threads
-    Boost::filesystem
-    Boost::system
+    hiredis::hiredis
+    redis++::redis++
 )
