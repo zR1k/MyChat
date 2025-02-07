@@ -13,7 +13,7 @@ async function GetVerifyCode(call, callback) {
         let query_res = await redisMoudle.GetRedis(const_module.code_prefix + call.request.email)
         console.log('query res is ' + query_res)
         let uniqueId = query_res
-        if (query_res == null) {
+        if (query_res === null) {
             uniqueId = uuidv4();
             if (uniqueId.length > 6) {
                 uniqueId = uniqueId.slice(0, 6);
@@ -21,7 +21,7 @@ async function GetVerifyCode(call, callback) {
             console.log('uniqueId is ' + uniqueId)
             let set_res = await redisMoudle.SetRedis(const_module.code_prefix + call.request.email, uniqueId, 180);
             console.log('set res is ' + set_res);
-            if (set_res == null) {
+            if (set_res === null) {
                 callback(null, { 
                     email: call.request.email,
                     error: const_module.Errors.RedisErr,
@@ -39,7 +39,7 @@ async function GetVerifyCode(call, callback) {
         };
         let email_res = await emailMoudle.SendMail(mailOptions)
         console.log('email res is ' + email_res)
-        if (email_res == null) {
+        if (email_res === null) {
             callback(null, { 
                 email: call.request.email,
                 error: const_module.Errors.Exception,
