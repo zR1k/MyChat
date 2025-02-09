@@ -1,12 +1,9 @@
 #include "LogicSystem.h"
 #include "HttpConnection.h"
 #include "VerifyGrpcClient.h"
-<<<<<<< HEAD
 #include "RedisMgr.h"
 #include "MysqlMgr.h"
 #include "StatusGrpcClient.h"
-=======
->>>>>>> e1c4624a03be4442f9c0d3c6ae4b7e48971b6ee4
 void LogicSystem::RegGet(std::string url, HttpHandler handler) {
     _get_handlers.insert(make_pair(url, handler));
 }
