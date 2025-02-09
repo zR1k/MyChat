@@ -26,6 +26,9 @@ find_package(OpenSSL REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(unofficial-mysql-connector-cpp CONFIG REQUIRED)
 
+message(STATUS "Hiredis include directory: ${hiredis_INCLUDE_DIRS}")
+message(STATUS "Hiredis library: ${hiredis_LIBRARIES}")
+
 # 查找所有源文件
 file(GLOB_RECURSE SRC_FILES "src/*.cpp" "src/*.h")
 
