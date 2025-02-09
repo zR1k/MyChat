@@ -13,6 +13,7 @@ message GetVerifyResp {
 
 service VerifyService {
   rpc GetVerifyCode (GetVerifyReq) returns (GetVerifyResp) {}
+<<<<<<< HEAD
 }
 
 message GetChatServerReq {
@@ -114,4 +115,6 @@ service ChatService {
 	rpc SendChatMsg(SendChatMsgReq) returns (SendChatMsgRsp) {}
 	rpc NotifyAuthFriend(AuthFriendReq) returns (AuthFriendRsp) {}
 	rpc NotifyTextChatMsg(TextChatMsgReq) returns (TextChatMsgRsp){}
+=======
+>>>>>>> e1c4624a03be4442f9c0d3c6ae4b7e48971b6ee4
 }

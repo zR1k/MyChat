@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # 指定 vcpkg 工具链文件
 set(CMAKE_TOOLCHAIN_FILE "D:/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
+<<<<<<< HEAD
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded")
 set(BOOST_ALL_DYN_LINK OFF)
 set(CMAKE_FIND_STATIC_LIBS_ONLY TRUE)
@@ -14,6 +15,8 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")  # 静态调试库
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")  # 静态发布库
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} /MT")  # 静态发布调试库
 set(CMAKE_CXX_FLAGS_MINSIZEREL "${CMAKE_CXX_FLAGS_MINSIZEREL} /MT")  # 静态最小发布库
+=======
+>>>>>>> e1c4624a03be4442f9c0d3c6ae4b7e48971b6ee4
 
 # 查找依赖库
 find_package(Boost REQUIRED COMPONENTS asio beast filesystem system)
@@ -22,9 +25,32 @@ find_package(gRPC CONFIG REQUIRED)
 find_package(jsoncpp CONFIG REQUIRED)
 find_package(Threads REQUIRED)
 find_package(hiredis CONFIG REQUIRED)
+<<<<<<< HEAD
 find_package(OpenSSL REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(unofficial-mysql-connector-cpp CONFIG REQUIRED)
+=======
+find_package(redis++ CONFIG REQUIRED)
+
+
+
+# 检查依赖项是否找到
+if (NOT Boost_FOUND)
+    message(FATAL_ERROR "Boost libraries not found!")
+endif()
+
+if (NOT Protobuf_FOUND)
+    message(FATAL_ERROR "Protobuf not found!")
+endif()
+
+if (NOT gRPC_FOUND)
+    message(FATAL_ERROR "gRPC not found!")
+endif()
+
+if (NOT jsoncpp_FOUND)
+    message(FATAL_ERROR "JsonCpp not found!")
+endif()
+>>>>>>> e1c4624a03be4442f9c0d3c6ae4b7e48971b6ee4
 
 message(STATUS "Hiredis include directory: ${hiredis_INCLUDE_DIRS}")
 message(STATUS "Hiredis library: ${hiredis_LIBRARIES}")
@@ -76,16 +102,24 @@ target_link_libraries(GATESERVER PRIVATE
     Boost::beast 
     Boost::filesystem 
     Boost::system 
+<<<<<<< HEAD
     protobuf::libprotoc 
     protobuf::libprotobuf
     protobuf::libprotobuf-lite
+=======
+    protobuf::libprotobuf 
+>>>>>>> e1c4624a03be4442f9c0d3c6ae4b7e48971b6ee4
     gRPC::grpc++ 
     JsonCpp::JsonCpp
     Threads::Threads
     hiredis::hiredis
+<<<<<<< HEAD
     unofficial::mysql-connector-cpp::connector
     unofficial::mysql-connector-cpp::connector-jdbc
     OpenSSL::SSL
     OpenSSL::Crypto
     ZLIB::ZLIB
+=======
+    redis++::redis++
+>>>>>>> e1c4624a03be4442f9c0d3c6ae4b7e48971b6ee4
 )

@@ -26,6 +26,7 @@ using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
 
 enum ErrorCodes {
     Success         = 0,
+<<<<<<< HEAD
     Error_Json      = 1001,     //Json解析错误
     RPCFailed       = 1002,     //RPC请求错误
     VarifyExpired   = 1003,     //验证码过期
@@ -51,3 +52,9 @@ private:
 };
 
 #define CODEPREFIX "code_"
+=======
+    Error_Json      = 1001,
+    RPCFailed       = 1002,
+};
+
+>>>>>>> e1c4624a03be4442f9c0d3c6ae4b7e48971b6ee4

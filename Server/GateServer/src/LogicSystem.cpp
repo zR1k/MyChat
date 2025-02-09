@@ -1,9 +1,12 @@
 #include "LogicSystem.h"
 #include "HttpConnection.h"
 #include "VerifyGrpcClient.h"
+<<<<<<< HEAD
 #include "RedisMgr.h"
 #include "MysqlMgr.h"
 #include "StatusGrpcClient.h"
+=======
+>>>>>>> e1c4624a03be4442f9c0d3c6ae4b7e48971b6ee4
 void LogicSystem::RegGet(std::string url, HttpHandler handler) {
     _get_handlers.insert(make_pair(url, handler));
 }
@@ -38,8 +41,11 @@ LogicSystem::LogicSystem() {
             return true;
         }
 
+<<<<<<< HEAD
         
 
+=======
+>>>>>>> e1c4624a03be4442f9c0d3c6ae4b7e48971b6ee4
         if(!src_root.isMember("email")) { 
             std::cout << "Failed to parse Json data!" << std::endl;
             root["error"] = ErrorCodes::Error_Json;
@@ -58,6 +64,7 @@ LogicSystem::LogicSystem() {
         return true;
 
     });
+<<<<<<< HEAD
 
     RegPost("/user_register", [](std::shared_ptr<HttpConnection> connection) {
         auto body_str = boost::beast::buffers_to_string(connection->_request.body().data());
@@ -257,6 +264,8 @@ LogicSystem::LogicSystem() {
 		return true;
 		});
 
+=======
+>>>>>>> e1c4624a03be4442f9c0d3c6ae4b7e48971b6ee4
 }
 
 bool LogicSystem::HandleGet(std::string path, std::shared_ptr<HttpConnection> con) {

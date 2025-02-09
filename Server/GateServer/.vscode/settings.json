@@ -78,8 +78,12 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "*.ipp": "cpp",
+<<<<<<< HEAD
         "fstream": "cpp",
         "scope": "cpp"
+=======
+        "fstream": "cpp"
+>>>>>>> e1c4624a03be4442f9c0d3c6ae4b7e48971b6ee4
     },
     "editor.fontFamily": "FiraCode Nerd Font"
 }
