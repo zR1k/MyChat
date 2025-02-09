@@ -2,8 +2,16 @@
 #include <json/value.h>
 #include <json/reader.h>
 #include "CServer.h"
+#include "ConfigMgr.h"
+#include "RedisMgr.h"
+#include <cassert>
 
 int main() {
+
+
+    auto& gCfgMgr = ConfigMgr::Inst();
+    std::string gate_port_str = gCfgMgr["GateServer"]["port"];
+    unsigned short gate_port = atoi(gate_port_str.c_str());
     try
     {
         unsigned short port = static_cast<unsigned short>(8080);
@@ -16,6 +24,7 @@ int main() {
             ioc.stop();
             });
         std::make_shared<CServer>(ioc, port)->Start();
+        std::cout << "Server start at port " << port << std::endl;
         ioc.run();
     }
     catch (std::exception const& e)
